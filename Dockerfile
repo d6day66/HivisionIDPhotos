@@ -15,7 +15,10 @@ RUN pip install --no-cache-dir -r requirements.txt -r requirements-app.txt
 
 COPY . .
 
-EXPOSE 7860
+# Download only the matting model used by the mini program. Model weights are
+# intentionally kept out of Git and baked into the image at build time.
+RUN python3 scripts/download_model.py --models hivision_modnet
+
 EXPOSE 8080
 
-CMD ["python3", "-u", "app.py", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["python3", "-u", "deploy_api.py"]
