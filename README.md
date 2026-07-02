@@ -18,6 +18,7 @@
 [![][modelscope-shield]][modelscope-link]
 [![][modelers-shield]][modelers-link]
 [![][compshare-shield]][compshare-link]
+[![][atomgit-shield]][atomgit-link]
 
 [![][trendshift-shield]][trendshift-link]
 [![][hellogithub-shield]][hellogithub-link]
@@ -53,7 +54,7 @@
 
 # 🤩 最近更新
 
-- 在线体验： [![SwanHub Demo](https://img.shields.io/static/v1?label=Demo&message=SwanHub%20Demo&color=blue)](https://swanhub.co/ZeYiLin/HivisionIDPhotos/demo)、[![Spaces](https://img.shields.io/badge/🤗-Open%20in%20Spaces-blue)](https://huggingface.co/spaces/TheEeeeLin/HivisionIDPhotos)、[![][modelscope-shield]][modelscope-link]、[![][compshare-shield]][compshare-link]
+- 在线体验： [![Spaces](https://img.shields.io/badge/🤗-Open%20in%20Spaces-blue)](https://huggingface.co/spaces/TheEeeeLin/HivisionIDPhotos)、[![][modelscope-shield]][modelscope-link]、[![][modelers-shield]][modelers-link]、[![][compshare-shield]][compshare-link]
 
 - 2024.11.20: Gradio Demo增加**打印排版**选项卡，支持六寸、五寸、A4、3R、4R五种排版尺寸
 - 2024.11.16: API接口增加美颜参数
@@ -478,6 +479,9 @@ This repository is licensed under the [Apache-2.0 License](LICENSE).
 
 [compshare-shield]: https://www-s.ucloud.cn/2025/02/dbef8b07ea3d316006d9c22765c3cd53_1740104342584.svg
 [compshare-link]: https://www.compshare.cn/images-detail?ImageID=compshareImage-17jacgm4ju16&ytag=HG_GPU_HivisionIDPhotos
+
+[atomgit-shield]: https://atomgit.com/ZeYiLin/HivisionIDPhotos/star/badge.svg
+[atomgit-link]: https://atomgit.com/ZeYiLin/HivisionIDPhotos
 
 <!-- 社区项目链接 -->
 [community-hivision-comfyui]: https://github.com/AIFSH/HivisionIDPhotos-ComfyUI

@@ -76,13 +76,18 @@ class IDPhotoProcessor:
             face_alignment_option = True
         else:
             face_alignment_option = False
-        # 排版裁剪线选项
+        # 水平翻转选项
         if LOCALES["plugin"][language]["choices"][1] in plugin_option:
+            horizontal_flip_option = True
+        else:
+            horizontal_flip_option = False
+        # 排版裁剪线选项
+        if LOCALES["plugin"][language]["choices"][2] in plugin_option:
             layout_photo_crop_line_option = True
         else:
             layout_photo_crop_line_option = False
         # JPEG格式选项
-        if LOCALES["plugin"][language]["choices"][2] in plugin_option:
+        if LOCALES["plugin"][language]["choices"][3] in plugin_option:
             jpeg_format_option = True
         else:
             jpeg_format_option = False
@@ -146,6 +151,7 @@ class IDPhotoProcessor:
                 sharpen_strength,
                 saturation_strength,
                 face_alignment_option,
+                horizontal_flip_option,
             )
         except (FaceError, APIError):
             return self._handle_photo_generation_error(language)
@@ -292,6 +298,7 @@ class IDPhotoProcessor:
         sharpen_strength,
         saturation_strength,
         face_alignment_option,
+        horizontal_flip_option,
     ):
         """生成证件照"""
         change_bg_only = (
@@ -309,6 +316,7 @@ class IDPhotoProcessor:
             sharpen_strength=sharpen_strength,
             saturation_strength=saturation_strength,
             face_alignment=face_alignment_option,
+            horizontal_flip=horizontal_flip_option,
         )
 
     # 处理照片生成错误
@@ -595,25 +603,27 @@ class IDPhotoProcessor:
         elif custom_kb:
             output_paths["standard"]["path"] += f"_{custom_kb}kb.{format}"
             output_paths["hd"]["path"] += f".{format}"
-            if not (key == "layout" and result_image_layout is None):
+            for key in output_paths:
+                if key == "layout" and result_image_layout is None:
+                    continue
                 output_paths[key]["path"] += f".{format}"
-            
-            # 只调整标准图像大小
-            resize_image_to_kb(
-                result_image_standard,
-                output_paths["standard"]["path"],
-                custom_kb,
-                dpi=300,
-            )
-            
-            # 保存高清图像和排版图像
-            save_image_dpi_to_bytes(
-                result_image_hd, output_paths["hd"]["path"], dpi=300
-            )
-            if result_image_layout is not None:
-                save_image_dpi_to_bytes(
-                    result_image_layout, output_paths["layout"]["path"], dpi=300
+                
+                # 只调整标准图像大小
+                resize_image_to_kb(
+                    result_image_standard,
+                    output_paths["standard"]["path"],
+                    custom_kb,
+                    dpi=300,
                 )
+                
+                # 保存高清图像和排版图像
+                save_image_dpi_to_bytes(
+                    result_image_hd, output_paths["hd"]["path"], dpi=300
+                )
+                if result_image_layout is not None:
+                    save_image_dpi_to_bytes(
+                        result_image_layout, output_paths["layout"]["path"], dpi=300
+                    )
 
             return output_paths
         # 没有自定义设置
